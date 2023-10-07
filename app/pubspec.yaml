@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  authexampleclient:
+    path: ../libs/authexampleclient 
   auto_route: ^7.8.4
   flutter_bloc: ^8.1.3
   
