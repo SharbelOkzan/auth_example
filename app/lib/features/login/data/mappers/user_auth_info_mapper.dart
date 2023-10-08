@@ -13,14 +13,15 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class AuthUserMapper implements EntityMapper<UserAuthData, JsonObject> {
-  static const String _nameJsonKey = 'name';
-  static const String _tokenJsonKey = 'token';
+  static const String _nameJsonKey = 'Name';
+  static const String _tokenJsonKey = 'Token';
+  static const String _dataJsonKey = 'data';
 
   @override
   UserAuthData fromModel(JsonObject model) {
     return UserAuthData(
-      name: model.asMap[_nameJsonKey],
-      token: model.asMap[_tokenJsonKey],
+      name: model.asMap[_dataJsonKey][_nameJsonKey],
+      token: model.asMap[_dataJsonKey][_tokenJsonKey],
     );
   }
 
