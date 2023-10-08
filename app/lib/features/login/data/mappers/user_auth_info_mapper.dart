@@ -1,4 +1,4 @@
-import 'package:auth_example/core/auth/domain/entities/user_auth_data.dart';
+import 'package:auth_example/features/login/domain/entities/user_auth_data.dart';
 import 'package:auth_example/core/interfaces/entity_mapper_base.dart';
 
 // This is becuase of a missing details in the api swagger docs.

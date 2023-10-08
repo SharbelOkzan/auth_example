@@ -1,9 +1,9 @@
 import 'package:auth_example/client/api_client_manager.dart';
-import 'package:auth_example/core/auth/data/datasources/auth_account_data_source.dart';
-import 'package:auth_example/core/auth/data/mappers/login_mapper.dart';
-import 'package:auth_example/core/auth/data/mappers/user_auth_info_mapper.dart';
-import 'package:auth_example/core/auth/domain/entities/login.dart';
-import 'package:auth_example/core/auth/domain/entities/user_auth_data.dart';
+import 'package:auth_example/features/login/data/datasources/auth_account_data_source.dart';
+import 'package:auth_example/features/login/data/mappers/login_mapper.dart';
+import 'package:auth_example/features/login/data/mappers/user_auth_info_mapper.dart';
+import 'package:auth_example/features/login/domain/entities/login.dart';
+import 'package:auth_example/features/login/domain/entities/user_auth_data.dart';
 import 'package:authexampleclient/authexampleclient.dart' hide User;
 import 'package:injectable/injectable.dart';
 

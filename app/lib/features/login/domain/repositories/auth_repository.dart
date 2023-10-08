@@ -1,4 +1,4 @@
-import 'package:auth_example/core/auth/data/datasources/auth_account_remote_data_source.dart';
+import 'package:auth_example/features/login/data/datasources/auth_account_remote_data_source.dart';
 import 'package:injectable/injectable.dart';
 
 import '../entities/login.dart';

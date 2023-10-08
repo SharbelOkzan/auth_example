@@ -1,11 +1,9 @@
 sealed class AuthenticationEvent {}
 
-class LoginViaPasswordEvent extends AuthenticationEvent {
-  final String email;
-  final String password;
-  LoginViaPasswordEvent({
-    required this.email,
-    required this.password,
+class AuthenticateEvent extends AuthenticationEvent {
+  final String token;
+  AuthenticateEvent({
+    required this.token,
   });
 }
 
