@@ -1,4 +1,4 @@
-import 'package:auth_example/core/auth/domain/entities/user.dart';
+import 'package:auth_example/core/auth/domain/entities/user_auth_data.dart';
 import 'package:auth_example/core/entity_mapper_base.dart';
 
 // This is becuase of a missing details in the api swagger docs.
@@ -9,7 +9,9 @@ import 'package:auth_example/core/entity_mapper_base.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:built_value/json_object.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class AuthUserMapper implements EntityMapper<UserAuthData, JsonObject> {
   static const String _nameJsonKey = 'name';
   static const String _tokenJsonKey = 'token';
