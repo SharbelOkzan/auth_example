@@ -65,7 +65,9 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i14.AuthenticationBloc>(() => _i14.AuthenticationBloc(
           gh<_i3.ApiClientManager>(),
           gh<_i11.GetCredentialsViaPasswordUsecase>(),
-          gh<InvalidType>(),
+          gh<_i12.PersistTokenUsecase>(),
+          gh<_i7.ValidateTokenUsecase>(),
+          gh<_i13.RetrieveTokenUsecase>(),
         ));
     return this;
   }

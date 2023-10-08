@@ -15,6 +15,8 @@ class PersistTokenUsecase extends UsecaseBase<String> {
 
   @override
   void call(String param) {
+    // _apiClientManager.client.setBearerAuth('', token);
+
     _secureStorageService
         .persistString(tokenPresistanceKey, param)
         .then((_) => debugPrint("token saved: $param"));
