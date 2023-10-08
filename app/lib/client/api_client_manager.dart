@@ -1,6 +1,8 @@
 import 'package:authexampleclient/authexampleclient.dart';
+import 'package:injectable/injectable.dart';
 
-abstract class ApiClientManager {
+@injectable
+class ApiClientManager {
   Authexampleclient? _client;
 
   Authexampleclient get client {
