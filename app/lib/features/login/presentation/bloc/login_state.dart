@@ -1,7 +1,29 @@
-abstract class LoginState {}
+sealed class LoginState {}
 
-class LoginInitial extends LoginState {}
+class LoginInitial extends LoginState {
+  String? email;
+  String? password;
+  LoginInitial({
+    this.email,
+    this.password,
+  });
+
+  LoginInitial copyWith({
+    String? email,
+    String? password,
+  }) {
+    return LoginInitial(
+      email: email ?? this.email,
+      password: password ?? this.password,
+    );
+  }
+}
 
 class LoginLoading extends LoginState {}
 
-class LoginSuccess extends LoginState {}
+class LoginSuccess extends LoginState {
+  String token;
+  LoginSuccess({
+    required this.token,
+  });
+}
