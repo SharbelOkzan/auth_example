@@ -1,4 +1,4 @@
-import 'package:auth_example/core/entity_mapper_base.dart';
+import 'package:auth_example/core/interfaces/entity_mapper_base.dart';
 import 'package:authexampleclient/authexampleclient.dart';
 import 'package:injectable/injectable.dart';
 

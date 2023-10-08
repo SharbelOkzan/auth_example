@@ -33,12 +33,12 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     gh.factory<_i3.ApiClientManager>(() => _i3.ApiClientManager());
-    gh.factory<_i4.GetCredentialsViaPassword>(
-        () => _i4.GetCredentialsViaPassword(gh<_i5.AuthAcountRepository>()));
+    gh.factory<_i4.GetCredentialsViaPasswordUsecase>(() =>
+        _i4.GetCredentialsViaPasswordUsecase(gh<_i5.AuthAcountRepository>()));
     gh.factory<_i6.PresistTokenUsecase>(() => _i6.PresistTokenUsecase());
     gh.factory<_i7.AuthenticationBloc>(() => _i7.AuthenticationBloc(
           gh<_i3.ApiClientManager>(),
-          gh<_i4.GetCredentialsViaPassword>(),
+          gh<_i4.GetCredentialsViaPasswordUsecase>(),
           gh<_i6.PresistTokenUsecase>(),
         ));
     return this;
