@@ -1,3 +1,4 @@
+import 'package:auth_example/client/api_client_manager.dart';
 import 'package:auth_example/core/auth/data/datasources/auth_account_data_source.dart';
 import 'package:auth_example/core/auth/data/mappers/login_mapper.dart';
 import 'package:auth_example/core/auth/data/mappers/user_auth_info_mapper.dart';
@@ -13,10 +14,10 @@ class AuthAccountRemoteDataSource implements AuthAccountDataSource {
   final AuthUserMapper _authUserMapper;
 
   AuthAccountRemoteDataSource(
-      {required AuthAccountApi authAccountApi,
+      {required ApiClientManager apiClientManager,
       required LoginMapper loginMapper,
       required AuthUserMapper authUserMapper})
-      : _authAccountApi = authAccountApi,
+      : _authAccountApi = apiClientManager.client.getAuthAccountApi(),
         _loginMapper = loginMapper,
         _authUserMapper = authUserMapper;
 
