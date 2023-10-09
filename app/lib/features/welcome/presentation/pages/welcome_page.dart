@@ -10,16 +10,18 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text("Welocme!"),
-          TextButton(
-            onPressed: _goToLogin(context),
-            child: const Text("login"),
-          )
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text("Welocme!"),
+            TextButton(
+              onPressed: _goToLogin(context),
+              child: const Text("login"),
+            )
+          ],
+        ),
       ),
     );
   }
