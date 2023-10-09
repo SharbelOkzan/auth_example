@@ -15,14 +15,18 @@ class HomePage extends StatelessWidget {
       value: getIt.get(),
       child: Scaffold(
           body: Center(
-              child: Column(
-        children: [
-          Text(userName),
-          TextButton(
-              onPressed: _onLogoutPressed(context),
-              child: const Text('logout')),
-        ],
-      ))),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(userName),
+            TextButton(
+                onPressed: _onLogoutPressed(context),
+                child: const Text('logout')),
+          ],
+        ),
+      )),
     );
   }
 
