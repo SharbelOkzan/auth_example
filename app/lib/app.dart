@@ -43,6 +43,9 @@ class _AppState extends State<App> {
         )
       ]));
     } else {
+      if (authState is AuthenticationInitial) {
+        BlocProvider.of<AuthenticationBloc>(context).add(AppLaunchEvent());
+      }
       routes.add(UnauthenticatedRouter(
           children: [WelcomeRoute(onLoginSuccess: _onLoginSuccess(context))]));
     }
