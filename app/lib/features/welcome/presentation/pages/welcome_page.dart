@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+  final void Function(String token) onLoginSuccess;
+  const WelcomePage({super.key, required this.onLoginSuccess});
 
   @override
   Widget build(BuildContext context) {
@@ -24,5 +25,5 @@ class WelcomePage extends StatelessWidget {
   }
 
   VoidCallback _goToLogin(BuildContext context) =>
-      () => AutoRouter.of(context).push(const LoginRoute());
+      () => AutoRouter.of(context).push(LoginRoute(onSuccess: onLoginSuccess));
 }

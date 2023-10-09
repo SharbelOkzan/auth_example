@@ -28,9 +28,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     LoginRoute.name: (routeData) {
+      final args = routeData.argsAs<LoginRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const LoginPage(),
+        child: LoginPage(
+          key: args.key,
+          onSuccess: args.onSuccess,
+        ),
       );
     },
     UnauthenticatedRouter.name: (routeData) {
@@ -40,9 +44,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     WelcomeRoute.name: (routeData) {
+      final args = routeData.argsAs<WelcomeRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const WelcomePage(),
+        child: WelcomePage(
+          key: args.key,
+          onLoginSuccess: args.onLoginSuccess,
+        ),
       );
     },
   };
@@ -78,16 +86,39 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [LoginPage]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute({List<PageRouteInfo>? children})
-      : super(
+class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({
+    Key? key,
+    required void Function(String) onSuccess,
+    List<PageRouteInfo>? children,
+  }) : super(
           LoginRoute.name,
+          args: LoginRouteArgs(
+            key: key,
+            onSuccess: onSuccess,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'LoginRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<LoginRouteArgs> page = PageInfo<LoginRouteArgs>(name);
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({
+    this.key,
+    required this.onSuccess,
+  });
+
+  final Key? key;
+
+  final void Function(String) onSuccess;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key, onSuccess: $onSuccess}';
+  }
 }
 
 /// generated route for
@@ -106,14 +137,38 @@ class UnauthenticatedRouter extends PageRouteInfo<void> {
 
 /// generated route for
 /// [WelcomePage]
-class WelcomeRoute extends PageRouteInfo<void> {
-  const WelcomeRoute({List<PageRouteInfo>? children})
-      : super(
+class WelcomeRoute extends PageRouteInfo<WelcomeRouteArgs> {
+  WelcomeRoute({
+    Key? key,
+    required void Function(String) onLoginSuccess,
+    List<PageRouteInfo>? children,
+  }) : super(
           WelcomeRoute.name,
+          args: WelcomeRouteArgs(
+            key: key,
+            onLoginSuccess: onLoginSuccess,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'WelcomeRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<WelcomeRouteArgs> page =
+      PageInfo<WelcomeRouteArgs>(name);
+}
+
+class WelcomeRouteArgs {
+  const WelcomeRouteArgs({
+    this.key,
+    required this.onLoginSuccess,
+  });
+
+  final Key? key;
+
+  final void Function(String) onLoginSuccess;
+
+  @override
+  String toString() {
+    return 'WelcomeRouteArgs{key: $key, onLoginSuccess: $onLoginSuccess}';
+  }
 }

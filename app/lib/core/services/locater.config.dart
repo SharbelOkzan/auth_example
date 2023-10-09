@@ -45,10 +45,10 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i3.ApiClientManager>(() => _i3.ApiClientManager());
+    gh.singleton<_i3.ApiClientManager>(_i3.ApiClientManager());
     gh.factory<_i4.AuthUserMapper>(() => _i4.AuthUserMapper());
     gh.factory<_i5.LoginMapper>(() => _i5.LoginMapper());
-    gh.factory<_i6.SecureStorageService>(() => _i6.SecureStorageService());
+    gh.singleton<_i6.SecureStorageService>(_i6.SecureStorageService());
     gh.factory<_i7.ValidateTokenUsecase>(() => _i7.ValidateTokenUsecase());
     gh.factory<_i8.AuthAccountRemoteDataSource>(
         () => _i8.AuthAccountRemoteDataSource(

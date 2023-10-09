@@ -42,7 +42,7 @@ class AuthenticationBloc
     if (!isTokenValid) {
       return;
     }
-    _apiClientManager.client.setBearerAuth('', token);
+    _apiClientManager.setBearerToken(token);
     _persistToken(token);
     emit(AuthenticationIdle(isAuthenticated: true));
   }
@@ -50,7 +50,6 @@ class AuthenticationBloc
   _handleAppLaunchEvent(
       AppLaunchEvent event, Emitter<AuthenticationState> emit) async {
     String? token = await _retrieveToken(null); // TODO imrove passing null
-    // TODO emit a loading state to show a splash screen or smt
     bool isTokenValid = _validateToken(token);
     emit(AuthenticationIdle(isAuthenticated: isTokenValid));
   }

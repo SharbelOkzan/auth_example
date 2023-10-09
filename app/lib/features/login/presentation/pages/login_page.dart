@@ -13,7 +13,8 @@ part '../widgets/submit_button.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final void Function(String token) onSuccess;
+  const LoginPage({super.key, required this.onSuccess});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class LoginPage extends StatelessWidget {
 
   void _listener(BuildContext context, LoginState state) {
     if (state is LoginSuccess) {
-      // TODO communicate success to AuthBloc
+      onSuccess(state.token);
       BlocProvider.of<LoginCubit>(context).init();
     }
   }
