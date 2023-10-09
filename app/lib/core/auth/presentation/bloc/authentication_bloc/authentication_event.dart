@@ -8,3 +8,5 @@ class AuthenticateEvent extends AuthenticationEvent {
 }
 
 class AppLaunchEvent extends AuthenticationEvent {}
+
+class LogoutPressedEvent extends AuthenticationEvent {}

@@ -1,4 +1,5 @@
 import 'package:auth_example/client/api_client_manager.dart';
+import 'package:auth_example/core/auth/domain/usecases/clear_token_usecase.dart';
 import 'package:auth_example/core/auth/domain/usecases/presist_token_usecase.dart';
 import 'package:auth_example/core/auth/domain/usecases/retrieve_token_usecase.dart';
 import 'package:auth_example/core/auth/domain/usecases/validate_token_usecase.dart';
@@ -18,12 +19,14 @@ class AuthenticationBloc
   final PersistTokenUsecase _persistToken;
   final RetrieveTokenUsecase _retrieveToken;
   final ValidateTokenUsecase _validateToken;
+  final ClearTokenUsecase _clearToken;
 
   AuthenticationBloc(
     this._apiClientManager,
     this._persistToken,
     this._validateToken,
     this._retrieveToken,
+    this._clearToken,
   ) : super(AuthenticationInitial()) {
     on<AuthenticationEvent>((event, emit) {
       switch (event) {
@@ -31,11 +34,13 @@ class AuthenticationBloc
           _handleAuthenticateEvent(event, emit);
         case AppLaunchEvent():
           _handleAppLaunchEvent(event, emit);
+        case LogoutPressedEvent():
+          _handleLogouPressedEvent(event, emit);
       }
     });
   }
 
-  _handleAuthenticateEvent(
+  void _handleAuthenticateEvent(
       AuthenticateEvent event, Emitter<AuthenticationState> emit) async {
     String token = event.token;
     bool isTokenValid = _validateToken(token);
@@ -47,10 +52,20 @@ class AuthenticationBloc
     emit(AuthenticationIdle(isAuthenticated: true));
   }
 
-  _handleAppLaunchEvent(
+  void _handleAppLaunchEvent(
       AppLaunchEvent event, Emitter<AuthenticationState> emit) async {
     String? token = await _retrieveToken(null); // TODO imrove passing null
     bool isTokenValid = _validateToken(token);
+    if (isTokenValid) {
+      _persistToken(token!);
+    }
     emit(AuthenticationIdle(isAuthenticated: isTokenValid));
+  }
+
+  void _handleLogouPressedEvent(
+      LogoutPressedEvent event, Emitter<AuthenticationState> emit) {
+    _clearToken(null);
+    _apiClientManager.clearBearerToken();
+    emit(AuthenticationIdle(isAuthenticated: false));
   }
 }

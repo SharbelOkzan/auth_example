@@ -21,4 +21,8 @@ class ApiClientManager {
     client.dio.options.headers[HttpHeaders.authorizationHeader] =
         "$_bearer $token";
   }
+
+  void clearBearerToken() {
+    client.dio.options.headers.remove(HttpHeaders.authorizationHeader);
+  }
 }
