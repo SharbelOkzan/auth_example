@@ -28,19 +28,19 @@ class AuthenticationBloc
     this._retrieveToken,
     this._clearToken,
   ) : super(AuthenticationInitial()) {
-    on<AuthenticationEvent>((event, emit) {
+    on<AuthenticationEvent>((event, emit) async {
       switch (event) {
         case AuthenticateEvent():
-          _handleAuthenticateEvent(event, emit);
+          await _handleAuthenticateEvent(event, emit);
         case AppLaunchEvent():
-          _handleAppLaunchEvent(event, emit);
+          await _handleAppLaunchEvent(event, emit);
         case LogoutPressedEvent():
           _handleLogouPressedEvent(event, emit);
       }
     });
   }
 
-  void _handleAuthenticateEvent(
+  Future<void> _handleAuthenticateEvent(
       AuthenticateEvent event, Emitter<AuthenticationState> emit) async {
     String token = event.token;
     bool isTokenValid = _validateToken(token);
@@ -52,7 +52,7 @@ class AuthenticationBloc
     emit(AuthenticationAuthenticated(userName: event.userName));
   }
 
-  void _handleAppLaunchEvent(
+  Future<void> _handleAppLaunchEvent(
       AppLaunchEvent event, Emitter<AuthenticationState> emit) async {
     AuthenticationState newState;
     String? token = await _retrieveToken(null); // TODO imrove passing null

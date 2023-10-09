@@ -14,6 +14,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   AppRouter appRouter = AppRouter();
+  List<PageRouteInfo<dynamic>> routes = List.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +22,11 @@ class _AppState extends State<App> {
       value: getIt.get(),
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (ctx, state) {
+        routes = _buildRoutesFromAuthState(ctx, state);
         return MaterialApp.router(
           routerDelegate: AutoRouterDelegate.declarative(
             appRouter,
-            routes: (_) => _buildRoutesFromAuthState(ctx, state),
+            routes: (_) => routes,
           ),
         );
       }),
