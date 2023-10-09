@@ -34,9 +34,9 @@ class LoginPage extends StatelessWidget {
       case LoginInitial():
         return _LoginForm();
       case LoginLoading():
-        return const CircularProgressIndicator();
+        return const Center(child: CircularProgressIndicator());
       case LoginSuccess():
-        return const CircularProgressIndicator();
+        return const Center(child: CircularProgressIndicator());
     }
   }
 
