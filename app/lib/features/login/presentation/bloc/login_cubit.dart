@@ -1,5 +1,5 @@
 import 'package:auth_example/features/login/domain/entities/login.dart';
-import 'package:auth_example/features/login/domain/usecases/login_via_password_usecase.dart';
+import 'package:auth_example/features/login/domain/usecases/get_auth_data_via_password_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -7,7 +7,7 @@ import 'login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
-  final GetCredentialsViaPasswordUsecase _getCredentialsViaPassword;
+  final GetAuthDataViaPasswordUsecase _getCredentialsViaPassword;
   LoginCubit(this._getCredentialsViaPassword) : super(LoginInitial());
 
   init() {

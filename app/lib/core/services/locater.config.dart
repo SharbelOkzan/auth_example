@@ -29,7 +29,7 @@ import 'package:auth_example/features/login/data/mappers/user_auth_info_mapper.d
     as _i4;
 import 'package:auth_example/features/login/domain/repositories/auth_repository.dart'
     as _i9;
-import 'package:auth_example/features/login/domain/usecases/login_via_password_usecase.dart'
+import 'package:auth_example/features/login/domain/usecases/get_auth_data_via_password_usecase.dart'
     as _i11;
 import 'package:auth_example/features/login/presentation/bloc/login_cubit.dart'
     as _i12;
@@ -62,10 +62,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i9.AuthAcountRepository(gh<_i8.AuthAccountRemoteDataSource>()));
     gh.factory<_i10.ClearTokenUsecase>(() => _i10.ClearTokenUsecase(
         secureStorageService: gh<_i6.SecureStorageService>()));
-    gh.factory<_i11.GetCredentialsViaPasswordUsecase>(() =>
-        _i11.GetCredentialsViaPasswordUsecase(gh<_i9.AuthAcountRepository>()));
+    gh.factory<_i11.GetAuthDataViaPasswordUsecase>(() =>
+        _i11.GetAuthDataViaPasswordUsecase(gh<_i9.AuthAcountRepository>()));
     gh.factory<_i12.LoginCubit>(
-        () => _i12.LoginCubit(gh<_i11.GetCredentialsViaPasswordUsecase>()));
+        () => _i12.LoginCubit(gh<_i11.GetAuthDataViaPasswordUsecase>()));
     gh.factory<_i13.PersistTokenUsecase>(() => _i13.PersistTokenUsecase(
         secureStorageService: gh<_i6.SecureStorageService>()));
     gh.factory<_i14.RetrieveTokenUsecase>(() => _i14.RetrieveTokenUsecase(

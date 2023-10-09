@@ -5,14 +5,14 @@ import 'package:auth_example/core/interfaces/usecase_base.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetCredentialsViaPasswordUsecase extends FetchUsecase<Login, String> {
+class GetAuthDataViaPasswordUsecase extends FetchUsecase<Login, UserAuthData> {
   final AuthAcountRepository _authAcountRepository;
 
-  GetCredentialsViaPasswordUsecase(this._authAcountRepository);
+  GetAuthDataViaPasswordUsecase(this._authAcountRepository);
 
   @override
-  Future<String> call(Login param) async {
+  Future<UserAuthData> call(Login param) async {
     UserAuthData user = await _authAcountRepository.authenticate(param);
-    return user.token;
+    return user;
   }
 }
