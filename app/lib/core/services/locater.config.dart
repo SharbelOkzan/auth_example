@@ -70,13 +70,13 @@ extension GetItInjectableX on _i1.GetIt {
         secureStorageService: gh<_i6.SecureStorageService>()));
     gh.factory<_i14.RetrieveTokenUsecase>(() => _i14.RetrieveTokenUsecase(
         secureStorageService: gh<_i6.SecureStorageService>()));
-    gh.factory<_i15.AuthenticationBloc>(() => _i15.AuthenticationBloc(
-          gh<_i3.ApiClientManager>(),
-          gh<_i13.PersistTokenUsecase>(),
-          gh<_i7.ValidateTokenUsecase>(),
-          gh<_i14.RetrieveTokenUsecase>(),
-          gh<_i10.ClearTokenUsecase>(),
-        ));
+    gh.singleton<_i15.AuthenticationBloc>(_i15.AuthenticationBloc(
+      gh<_i3.ApiClientManager>(),
+      gh<_i13.PersistTokenUsecase>(),
+      gh<_i7.ValidateTokenUsecase>(),
+      gh<_i14.RetrieveTokenUsecase>(),
+      gh<_i10.ClearTokenUsecase>(),
+    ));
     return this;
   }
 }

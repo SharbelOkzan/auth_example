@@ -12,7 +12,7 @@ import 'authentication_event.dart';
 export 'authentication_state.dart';
 export 'authentication_event.dart';
 
-@injectable
+@singleton
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final ApiClientManager _apiClientManager;
