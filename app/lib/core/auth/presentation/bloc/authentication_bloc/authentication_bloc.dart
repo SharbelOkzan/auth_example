@@ -28,14 +28,14 @@ class AuthenticationBloc
     on<AuthenticationEvent>((event, emit) {
       switch (event) {
         case AuthenticateEvent():
-          _handleLoginViaPasswordEvent(event, emit);
+          _handleAuthenticateEvent(event, emit);
         case AppLaunchEvent():
           _handleAppLaunchEvent(event, emit);
       }
     });
   }
 
-  _handleLoginViaPasswordEvent(
+  _handleAuthenticateEvent(
       AuthenticateEvent event, Emitter<AuthenticationState> emit) async {
     String token = event.token;
     bool isTokenValid = _validateToken(token);
