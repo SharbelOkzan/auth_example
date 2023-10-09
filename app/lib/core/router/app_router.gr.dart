@@ -22,9 +22,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const HomePage(),
+        child: HomePage(
+          key: args.key,
+          userName: args.userName,
+        ),
       );
     },
     LoginRoute.name: (routeData) {
@@ -72,16 +76,39 @@ class AuthenticatedRouter extends PageRouteInfo<void> {
 
 /// generated route for
 /// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
-      : super(
+class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
+    Key? key,
+    required String userName,
+    List<PageRouteInfo>? children,
+  }) : super(
           HomeRoute.name,
+          args: HomeRouteArgs(
+            key: key,
+            userName: userName,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<HomeRouteArgs> page = PageInfo<HomeRouteArgs>(name);
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({
+    this.key,
+    required this.userName,
+  });
+
+  final Key? key;
+
+  final String userName;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key, userName: $userName}';
+  }
 }
 
 /// generated route for
@@ -89,7 +116,10 @@ class HomeRoute extends PageRouteInfo<void> {
 class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
   LoginRoute({
     Key? key,
-    required void Function(String) onSuccess,
+    required void Function(
+      String,
+      String,
+    ) onSuccess,
     List<PageRouteInfo>? children,
   }) : super(
           LoginRoute.name,
@@ -113,7 +143,10 @@ class LoginRouteArgs {
 
   final Key? key;
 
-  final void Function(String) onSuccess;
+  final void Function(
+    String,
+    String,
+  ) onSuccess;
 
   @override
   String toString() {
@@ -140,7 +173,10 @@ class UnauthenticatedRouter extends PageRouteInfo<void> {
 class WelcomeRoute extends PageRouteInfo<WelcomeRouteArgs> {
   WelcomeRoute({
     Key? key,
-    required void Function(String) onLoginSuccess,
+    required void Function(
+      String,
+      String,
+    ) onLoginSuccess,
     List<PageRouteInfo>? children,
   }) : super(
           WelcomeRoute.name,
@@ -165,7 +201,10 @@ class WelcomeRouteArgs {
 
   final Key? key;
 
-  final void Function(String) onLoginSuccess;
+  final void Function(
+    String,
+    String,
+  ) onLoginSuccess;
 
   @override
   String toString() {

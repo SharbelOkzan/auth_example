@@ -1,4 +1,5 @@
 import 'package:auth_example/features/login/domain/entities/login.dart';
+import 'package:auth_example/features/login/domain/entities/user_auth_data.dart';
 import 'package:auth_example/features/login/domain/usecases/get_auth_data_via_password_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -25,8 +26,11 @@ class LoginCubit extends Cubit<LoginState> {
         email: (state as LoginInitial).email!,
         password: (state as LoginInitial).password!);
     emit(LoginLoading());
-    String token = await _getCredentialsViaPassword(login);
-    emit(LoginSuccess(token: token));
+    UserAuthData userAuthData = await _getCredentialsViaPassword(login);
+    emit(LoginSuccess(
+      token: userAuthData.token,
+      userName: userAuthData.name,
+    ));
   }
 
   @override

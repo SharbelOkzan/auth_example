@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class WelcomePage extends StatelessWidget {
-  final void Function(String token) onLoginSuccess;
+  final void Function(String token, String userName) onLoginSuccess;
   const WelcomePage({super.key, required this.onLoginSuccess});
 
   @override

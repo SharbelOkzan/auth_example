@@ -6,7 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final String userName;
+  const HomePage({super.key, required this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,14 @@ class HomePage extends StatelessWidget {
       value: getIt.get(),
       child: Scaffold(
           body: Center(
-              child: TextButton(
-                  onPressed: _onLogoutPressed(context),
-                  child: const Text('logout')))),
+              child: Column(
+        children: [
+          Text(userName),
+          TextButton(
+              onPressed: _onLogoutPressed(context),
+              child: const Text('logout')),
+        ],
+      ))),
     );
   }
 

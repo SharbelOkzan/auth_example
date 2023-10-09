@@ -1,19 +1,22 @@
-class AuthenticationInitial extends AuthenticationState {
-  AuthenticationInitial() : super(isAuthenticated: false);
+sealed class AuthenticationState {
+  AuthenticationState();
 }
 
-class AuthenticationIdle extends AuthenticationState {
-  final AuthenticationError? authenticationError;
-  AuthenticationIdle({
-    required super.isAuthenticated,
-    this.authenticationError,
+class AuthenticationInitial extends AuthenticationState {
+  AuthenticationInitial();
+}
+
+class AuthenticationAuthenticated extends AuthenticationState {
+  final String userName;
+  AuthenticationAuthenticated({
+    required this.userName,
   });
 }
 
-sealed class AuthenticationState {
-  final bool isAuthenticated;
-  AuthenticationState({
-    required this.isAuthenticated,
+class AuthenticationUnauthenticated extends AuthenticationState {
+  final AuthenticationError? authenticationError;
+  AuthenticationUnauthenticated({
+    this.authenticationError,
   });
 }
 

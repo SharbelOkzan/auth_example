@@ -23,7 +23,9 @@ class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
   String token;
+  String userName;
   LoginSuccess({
     required this.token,
+    required this.userName,
   });
 }

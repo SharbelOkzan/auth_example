@@ -49,23 +49,31 @@ class AuthenticationBloc
     }
     _apiClientManager.setBearerToken(token);
     _persistToken(token);
-    emit(AuthenticationIdle(isAuthenticated: true));
+    emit(AuthenticationAuthenticated(userName: event.userName));
   }
 
   void _handleAppLaunchEvent(
       AppLaunchEvent event, Emitter<AuthenticationState> emit) async {
+    AuthenticationState newState;
     String? token = await _retrieveToken(null); // TODO imrove passing null
     bool isTokenValid = _validateToken(token);
     if (isTokenValid) {
       _persistToken(token!);
+      // it's bad practice to cache user data unless the app
+      // is meant to be offline-available. In such case,
+      // a caching layer and a local data source is needed.
+      newState =
+          AuthenticationAuthenticated(userName: "Only token is preserved");
+    } else {
+      newState = AuthenticationUnauthenticated();
     }
-    emit(AuthenticationIdle(isAuthenticated: isTokenValid));
+    emit(newState);
   }
 
   void _handleLogouPressedEvent(
       LogoutPressedEvent event, Emitter<AuthenticationState> emit) {
     _clearToken(null);
     _apiClientManager.clearBearerToken();
-    emit(AuthenticationIdle(isAuthenticated: false));
+    emit(AuthenticationUnauthenticated());
   }
 }

@@ -36,8 +36,12 @@ class _AppState extends State<App> {
     List<PageRouteInfo<dynamic>> routes =
         List<PageRouteInfo<dynamic>>.empty(growable: true);
 
-    if (authState is AuthenticationIdle && authState.isAuthenticated) {
-      routes.add(const AuthenticatedRouter());
+    if (authState is AuthenticationAuthenticated) {
+      routes.add(AuthenticatedRouter(children: [
+        HomeRoute(
+          userName: authState.userName,
+        )
+      ]));
     } else {
       routes.add(UnauthenticatedRouter(
           children: [WelcomeRoute(onLoginSuccess: _onLoginSuccess(context))]));
@@ -45,7 +49,9 @@ class _AppState extends State<App> {
     return routes;
   }
 
-  _onLoginSuccess(BuildContext context) =>
-      (String token) => BlocProvider.of<AuthenticationBloc>(context)
-          .add(AuthenticateEvent(token: token));
+  void Function(String token, String userName) _onLoginSuccess(
+          BuildContext context) =>
+      (String token, String userName) =>
+          BlocProvider.of<AuthenticationBloc>(context)
+              .add(AuthenticateEvent(token: token, userName: userName));
 }
